@@ -3,8 +3,6 @@
 //Aqui esta la logica de MySQL
 import { createStudents } from "@/services/studentService";
 import { getStudents } from "@/services/studentService";
-import { updateStudent } from "@/services/studentService";
-import { deleteStudent } from "@/services/studentService";
 
 // POST = CREAR
 // Request nos identifica lo que llega desde frontend con body
@@ -34,31 +32,3 @@ export async function GET() {
     }
 }
 
-//PUT = UPDATE
-export async function PUT(request) {
-
-    try {
-        const body = await request.json();
-        const { id } = body;
-        const result = await updateStudent(id, body);
-        return Response.json(result);
-    } catch (error) {
-        return Response.json({
-            error: error.message
-        });
-    }
-}
-
-//DELETE = ELIMINAR 
-export async function DELETE(request) {
-    try {
-        const body = await request.json();
-        const { id } = body;
-        const result = await deleteStudent(id);
-        return Response.json(result);
-    } catch(error) {
-        return Response.json({
-            error: error.message
-        });
-    }
-}
